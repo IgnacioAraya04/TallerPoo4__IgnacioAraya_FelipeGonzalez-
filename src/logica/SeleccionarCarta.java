@@ -2,6 +2,7 @@ package logica;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -24,7 +26,7 @@ public class SeleccionarCarta extends JFrame {
 	
 	private void configurarVentana() {
 		setTitle("Seleccionar Carta");
-		setSize(500,300);
+		setSize(400,500);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setLayout(new BorderLayout());
@@ -33,8 +35,10 @@ public class SeleccionarCarta extends JFrame {
 	
 	private void iniciar() {
 
-		JPanel gridPanel = new JPanel(new GridLayout(20,1,5,5));
+		
+		JPanel gridPanel = new JPanel(new GridLayout(20,1,5,5)) ;
 		JLabel titulo = new JLabel("===== Seleccionar Carta =====", SwingConstants.CENTER);
+		// Cambiar por datos de la carta
 		for (int i = 0; i < 20; i++) {
 			JPanel contenedor = new JPanel(new BorderLayout());
 			JLabel imagen = imagen("rndomImages/backCard.jpg");
@@ -46,9 +50,11 @@ public class SeleccionarCarta extends JFrame {
 			gridPanel.add(contenedor);
 		}
 		JScrollPane scrollPane = new JScrollPane(gridPanel);
-		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		
 		add(titulo,BorderLayout.NORTH);
+		
 		add(scrollPane,BorderLayout.CENTER);
 		
 		
@@ -66,7 +72,10 @@ public class SeleccionarCarta extends JFrame {
 	}
 	
 	private JButton crearBoton() {
-		JButton b = new JButton("Seleccionar");
+		JButton b = new JButton("Seleccionar") {
+			Integer indice;
+			
+		};
 		b.addActionListener(e -> {
 			
 			

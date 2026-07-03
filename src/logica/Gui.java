@@ -58,7 +58,7 @@ public class Gui {
 	private JButton analisisButton() {
 		JButton b = new JButton("Menú Análisis");
 		b.addActionListener(e ->{
-			
+			new OrdenarCartas();
 		});
 		
 		return b;
