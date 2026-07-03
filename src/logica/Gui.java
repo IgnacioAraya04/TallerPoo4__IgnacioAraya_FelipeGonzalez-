@@ -46,11 +46,8 @@ public class Gui {
 	private JButton adminButton(JFrame v) {
 		JButton b = new JButton("Menú Admin");
 		
-<<<<<<< Updated upstream
-		b.addActionListener( e ->{
-=======
 		b.addActionListener(e ->{
->>>>>>> Stashed changes
+
 			GuiAdmin a = new GuiAdmin();
 			a.createGuiAdmin();
 

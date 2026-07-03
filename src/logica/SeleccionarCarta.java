@@ -11,7 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 public class SeleccionarCarta extends JFrame {
 	ArrayList<String> listaCartas = new ArrayList<String>();
@@ -30,14 +32,12 @@ public class SeleccionarCarta extends JFrame {
 	}
 	
 	private void iniciar() {
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVisible(true);
-		JPanel gridPanel = new JPanel(new GridLayout(20,1,5,5));		
-		gridPanel.setVisible(true);
 
+		JPanel gridPanel = new JPanel(new GridLayout(20,1,5,5));
+		JLabel titulo = new JLabel("===== Seleccionar Carta =====", SwingConstants.CENTER);
 		for (int i = 0; i < 20; i++) {
 			JPanel contenedor = new JPanel(new BorderLayout());
-			JLabel imagen = imagen("rndomImage/backCard");
+			JLabel imagen = imagen("rndomImages/backCard.jpg");
 			JLabel texto = new JLabel("blablabalblablabalblabalbalbal");
 			JButton boton = crearBoton();
 			contenedor.add(imagen,BorderLayout.WEST);
@@ -45,8 +45,11 @@ public class SeleccionarCarta extends JFrame {
 			contenedor.add(boton,BorderLayout.EAST);
 			gridPanel.add(contenedor);
 		}
-		scrollPane.add(gridPanel);
-		add(scrollPane);
+		JScrollPane scrollPane = new JScrollPane(gridPanel);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		add(titulo,BorderLayout.NORTH);
+		add(scrollPane,BorderLayout.CENTER);
 		
 		
 	}
