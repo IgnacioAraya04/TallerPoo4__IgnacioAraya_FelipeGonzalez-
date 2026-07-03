@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,6 +28,7 @@ public class OrdenarCartas extends JFrame{
  	
  	public OrdenarCartas(SistemaImpl sistem) {
  		this.sistem = sistem ;
+ 		listaCarta = sistem.getCarta();
  		configurarVentana();
  		iniciar();
  	}
@@ -64,7 +64,8 @@ public class OrdenarCartas extends JFrame{
  		}
  		
  		gridPanel2 = new JPanel(new GridLayout(50,1,5,5));
-			for (int i = 0; i < 20; i++) {
+			for (int i = 0; i < listaCarta.size(); i++) {
+				Carta carta = listaCarta.get(i);
 				JPanel contenedor = new JPanel(new BorderLayout());
 				JLabel imagen = imagen("rndomImages/backCard.jpg");
 				JLabel texto = new JLabel("nombre");

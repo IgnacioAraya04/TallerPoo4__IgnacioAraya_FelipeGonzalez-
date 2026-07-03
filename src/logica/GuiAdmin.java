@@ -21,8 +21,6 @@ public class GuiAdmin {
     private JComboBox<String> comboTipoTransporte;
 	
 	
-	public void createGuiAdmin() {
-
 	public void createGuiAdmin(SistemaImpl sistem) {
 		this.sistem = sistem;
 		
@@ -75,7 +73,6 @@ public class GuiAdmin {
 	private JButton agregarCarta() {
 		JButton b = new JButton("agregar carta");
 		b.addActionListener(e -> {
-			new CrearCarta(SistemaImpl);
 			new CrearCarta(sistem);
 		});
 
@@ -85,7 +82,6 @@ public class GuiAdmin {
 	private JButton eliminarCarta() {
 		JButton b = new JButton("eliminar carta");
 		b.addActionListener(e -> {
-			new SeleccionarCarta();
 			new SeleccionarCarta(sistem);
 		});
 
