@@ -20,11 +20,13 @@ public class CrearCarta extends JFrame {
  	private JComboBox<String> comboTipodeCartaBox;
 	private JLabel lblInput1, lblInput2, lblInput3, lblInput4;
 	private JTextField txtInput1, txtInput2, txtInput3, txtInput4;
+	private SistemaImpl sistem;
 	
 	private boolean saveClicked = false;
 	
 	
-	public CrearCarta() {
+	public CrearCarta(SistemaImpl sistem) {
+		this.sistem = sistem;
 		configurarVentana();
 		iniciar();
 	}
@@ -122,11 +124,27 @@ public class CrearCarta extends JFrame {
 					lblInput4.setVisible(false);
 					lblInput4.setText("");
 					txtInput4.setVisible(false);
-					break;
+					break;				
+				}
+			}	
+		});
+		
+		btnCrear.addActionListener(e->{
+			try {
+				String tipo = (String) comboTipodeCartaBox.getSelectedItem();
+				String nombre = txtInput1.getText();
+				int rareza = Integer.valueOf(txtInput2.getText());
 				
+				
+				if (tipo.equalsIgnoreCase("Pokemon")) {
+					
 				}
 				
+				
+			} catch (Exception e2) {
+				// TODO: handle exception
 			}
+			
 			
 			
 		});
