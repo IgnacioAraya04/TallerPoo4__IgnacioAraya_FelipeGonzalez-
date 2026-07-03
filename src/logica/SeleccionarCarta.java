@@ -1,8 +1,7 @@
 package logica;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Graphics;
+
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -11,22 +10,25 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
+import dominio.Carta;
+
 public class SeleccionarCarta extends JFrame {
-	ArrayList<String> listaCartas = new ArrayList<String>();
-	public SeleccionarCarta() {
+	SistemaImpl sistem;
+	ArrayList<Carta> listaCartas;
+	public SeleccionarCarta(SistemaImpl sistem) {
+		this.sistem = sistem;
+		listaCartas = sistem.getCarta();
 		configurarVentana();
 		iniciar();
 	}
 	
 	private void configurarVentana() {
 		setTitle("Seleccionar Carta");
-		setSize(400,500);
+		setSize(600,500);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setLayout(new BorderLayout());
@@ -36,14 +38,15 @@ public class SeleccionarCarta extends JFrame {
 	private void iniciar() {
 
 		
-		JPanel gridPanel = new JPanel(new GridLayout(20,1,5,5)) ;
+		JPanel gridPanel = new JPanel(new GridLayout(listaCartas.size(),1,5,5)) ;
 		JLabel titulo = new JLabel("===== Seleccionar Carta =====", SwingConstants.CENTER);
 		// Cambiar por datos de la carta
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < listaCartas.size(); i++) {
+			Carta carta = listaCartas.get(i);
 			JPanel contenedor = new JPanel(new BorderLayout());
-			JLabel imagen = imagen("rndomImages/backCard.jpg");
-			JLabel texto = new JLabel("blablabalblablabalblabalbalbal");
-			JButton boton = crearBoton();
+			JLabel imagen = imagen("Cartas/"+carta.getNombre()+".jpg");
+			JLabel texto = new JLabel(carta.getNombre()+" Rareza: "+carta.getRareza()+" Tipo de Carta: "+carta.getTipo());
+			JButton boton = crearBoton(i);
 			contenedor.add(imagen,BorderLayout.WEST);
 			contenedor.add(texto,BorderLayout.CENTER);
 			contenedor.add(boton,BorderLayout.EAST);
@@ -71,9 +74,9 @@ public class SeleccionarCarta extends JFrame {
 		return label;
 	}
 	
-	private JButton crearBoton() {
+	private JButton crearBoton(Integer i) {
 		JButton b = new JButton("Seleccionar") {
-			Integer indice;
+			Integer indice = i;
 			
 		};
 		b.addActionListener(e -> {

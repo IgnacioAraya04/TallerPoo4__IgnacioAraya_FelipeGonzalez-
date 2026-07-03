@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ItemEvent;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -15,14 +16,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import dominio.Carta;
+
 public class OrdenarCartas extends JFrame{
  	private JComboBox<String> comboTipodeOrdenBox;
+ 	private ArrayList<Carta> listaCarta;
+ 	private SistemaImpl sistem;
  	private JPanel gridPanel1, gridPanel2, gridPanel3;
  	private JScrollPane scrollPaneRareza, scrollPaneNombre, scrollPanePoder;
  	private CardLayout cardLayout = new CardLayout();
  	private JPanel cardsPanel = new JPanel(cardLayout);
  	
- 	public OrdenarCartas() {
+ 	public OrdenarCartas(SistemaImpl sistem) {
+ 		this.sistem = sistem ;
  		configurarVentana();
  		iniciar();
  	}
@@ -82,11 +88,10 @@ public class OrdenarCartas extends JFrame{
  		scrollPanePoder = new JScrollPane(gridPanel3);
 		
 
- 		
+ 		cardsPanel.add(scrollPaneRareza, "Rareza");
  		cardsPanel.add(scrollPaneNombre, "Nombre");
  		cardsPanel.add(scrollPanePoder, "Poder");
- 		cardsPanel.add(scrollPaneRareza, "Rareza");
- 		
+ 	
  		add(cardsPanel, BorderLayout.CENTER);
 
  		configurarEventos();

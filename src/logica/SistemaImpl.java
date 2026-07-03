@@ -27,7 +27,7 @@ public class SistemaImpl implements Sistema {
 		String[] partes = string.split(";");
 		if (partes[2].equalsIgnoreCase("Pokemon")) {
 			listaCartas.add(cf.CrearCarta(partes[0], Integer.valueOf(partes[1]) , partes[2], Integer.valueOf(partes[3]), Integer.valueOf(partes[4])));	
-		} else if (partes[2].equalsIgnoreCase("Energia")) {
+		} else if (partes[2].equalsIgnoreCase("Energy")) {
 			listaCartas.add(cf.CrearCarta(partes[0], Integer.valueOf(partes[1]), partes[2], partes[3]));
 		} else {
 			listaCartas.add(cf.CrearCarta(partes[0], Integer.valueOf(partes[1]), partes[2], Integer.valueOf(partes[3])));		

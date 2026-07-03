@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -133,20 +134,41 @@ public class CrearCarta extends JFrame {
 			try {
 				String tipo = (String) comboTipodeCartaBox.getSelectedItem();
 				String nombre = txtInput1.getText();
-				int rareza = Integer.valueOf(txtInput2.getText());
+				String rareza = txtInput2.getText();
 				
 				
 				if (tipo.equalsIgnoreCase("Pokemon")) {
+					String daño = txtInput3.getText();
+					String cantEnergia = txtInput4.getText();
+					String linea = nombre+";"+rareza+";"+tipo+";"+daño+";"+cantEnergia;
 					
+					sistem.AgregarCarta(linea);
+				}
+				else if (tipo.equalsIgnoreCase("Item")) {
+					String especial = txtInput3.getText();
+					String linea = nombre+";"+rareza+";"+tipo+";"+especial;
+					
+					sistem.AgregarCarta(linea);
+				}
+				else if (tipo.equalsIgnoreCase("Supporter")) {
+					String especial = txtInput3.getText();
+					String linea = nombre+";"+rareza+";"+tipo+";"+especial;
+					
+					sistem.AgregarCarta(linea);
+				}
+				else if (tipo.equalsIgnoreCase("Energy")) {
+					String especial = txtInput3.getText();
+					String linea = nombre+";"+rareza+";"+tipo+";"+especial;
+					
+					sistem.AgregarCarta(linea);
 				}
 				
-				
-			} catch (Exception e2) {
-				// TODO: handle exception
-			}
-			
-			
-			
+			} catch (NumberFormatException e2) {
+				JOptionPane.showMessageDialog(this, "Por Favor ingrese valores válidos en los campos correspondientes");
+		}
+		
+		
+		
 		});
 	}
 	

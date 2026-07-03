@@ -8,8 +8,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Gui {
+	SistemaImpl sistem;
 	
-	public void menuPrincipa() {
+	public void menuPrincipa(SistemaImpl sistem) {
+		this.sistem = sistem;
 		JFrame ventana = new JFrame("Menu principal");
 		ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
@@ -49,7 +51,7 @@ public class Gui {
 		b.addActionListener(e ->{
 
 			GuiAdmin a = new GuiAdmin();
-			a.createGuiAdmin();
+			a.createGuiAdmin(sistem);
 
 		});
 		
