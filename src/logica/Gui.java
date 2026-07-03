@@ -1,13 +1,10 @@
 package logica;
 
 import java.awt.BorderLayout;
-import java.awt.Image;
 
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Gui {
@@ -19,6 +16,8 @@ public class Gui {
 		ventana.setSize(230, 350);
 		ventana.setLocationRelativeTo(null);
 		
+		ventana.setContentPane(new ImageBackgroundPanel("rndomImages/backCard.jpg"));
+		
 		ventana.getContentPane().add(createGui(ventana));
 		
 		ventana.setVisible(true);
@@ -29,7 +28,7 @@ public class Gui {
 		
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		
-		JLabel imagen = imagenPrincipal();
+//		JLabel imagen = imagenPrincipal();
 		JPanel botonera = new JPanel();
 		
 		botonera.setLayout(new BoxLayout(botonera, BoxLayout.LINE_AXIS));
@@ -39,7 +38,6 @@ public class Gui {
 		
 		botonera.add(boton1);
 		botonera.add(boton2);
-		mainPanel.add(imagen, BorderLayout.CENTER);
 		mainPanel.add(botonera, BorderLayout.SOUTH);
 		
 		return mainPanel;
@@ -48,7 +46,11 @@ public class Gui {
 	private JButton adminButton(JFrame v) {
 		JButton b = new JButton("Menú Admin");
 		
+<<<<<<< Updated upstream
 		b.addActionListener( e ->{
+=======
+		b.addActionListener(e ->{
+>>>>>>> Stashed changes
 			GuiAdmin a = new GuiAdmin();
 			a.createGuiAdmin();
 
@@ -65,16 +67,16 @@ public class Gui {
 		return b;
 	}
 	
-	private JLabel imagenPrincipal() {
-		ImageIcon imagenOriginal = new ImageIcon("Cartas/backCard.jpg");
-		Image imagen = imagenOriginal.getImage();
-		Image escalado = imagen.getScaledInstance(200, 300, Image.SCALE_SMOOTH);
-		ImageIcon imagenFinal = new ImageIcon(escalado);
-		
-		JLabel label = new JLabel(imagenFinal);
-		
-		return label;
-	}
+//	private JLabel imagenPrincipal() {
+//		ImageIcon imagenOriginal = new ImageIcon("rndomImages/backCard.jpg");
+//		Image imagen = imagenOriginal.getImage();
+//		Image escalado = imagen.getScaledInstance(200, 300, Image.SCALE_SMOOTH);
+//		ImageIcon imagenFinal = new ImageIcon(escalado);
+//		
+//		JLabel label = new JLabel(imagenFinal);
+//		
+//		return label;
+//	}
 	
 	
 }
