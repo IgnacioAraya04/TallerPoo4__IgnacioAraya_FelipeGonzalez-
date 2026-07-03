@@ -1,6 +1,7 @@
 package logica;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ItemEvent;
@@ -15,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class CrearCarta extends JDialog {
+public class CrearCarta extends JFrame {
  	private JComboBox<String> comboTipodeCartaBox;
 	private JLabel lblInput1, lblInput2, lblInput3, lblInput4;
 	private JTextField txtInput1, txtInput2, txtInput3, txtInput4;
@@ -132,7 +133,7 @@ public class CrearCarta extends JDialog {
 	}
 	
 	private JLabel imagenPrincipal() {
-		ImageIcon imagenOriginal = new ImageIcon("Cartas/relax.gif");
+		ImageIcon imagenOriginal = new ImageIcon("rndomImages/relax.gif");
 		Image imagen = imagenOriginal.getImage();
 		Image escalado = imagen.getScaledInstance(200, 250, 0);
 		ImageIcon imagenFinal = new ImageIcon(escalado);

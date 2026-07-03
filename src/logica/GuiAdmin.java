@@ -2,6 +2,7 @@ package logica;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -24,9 +25,11 @@ public class GuiAdmin {
 		JFrame ventana = new JFrame("Menu Admin");
 		ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-		ventana.setSize(150, 250);
+		ventana.setSize(220, 290);
 		ventana.setLocationRelativeTo(null);
-
+		
+		ventana.setContentPane(new ImageBackgroundPanel("rndomImages/backgroundAdmin.png"));
+		
 		ventana.add(createGui());
 
 		ventana.setVisible(true);
@@ -68,7 +71,7 @@ public class GuiAdmin {
 	private JButton agregarCarta() {
 		JButton b = new JButton("agregar carta");
 		b.addActionListener(e -> {
-			CrearCarta c = new CrearCarta();
+			new CrearCarta();
 		});
 
 		return b;
@@ -77,7 +80,7 @@ public class GuiAdmin {
 	private JButton eliminarCarta() {
 		JButton b = new JButton("eliminar carta");
 		b.addActionListener(e -> {
-
+			new SeleccionarCarta();
 		});
 
 		return b;
@@ -91,5 +94,6 @@ public class GuiAdmin {
 
 		return b;
 	}
+	
 
 }
