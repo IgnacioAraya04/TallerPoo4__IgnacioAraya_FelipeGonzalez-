@@ -17,11 +17,15 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class GuiAdmin {
+	SistemaImpl sistem;
     private JComboBox<String> comboTipoTransporte;
 	
 	
 	public void createGuiAdmin() {
 
+	public void createGuiAdmin(SistemaImpl sistem) {
+		this.sistem = sistem;
+		
 		JFrame ventana = new JFrame("Menu Admin");
 		ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -72,6 +76,7 @@ public class GuiAdmin {
 		JButton b = new JButton("agregar carta");
 		b.addActionListener(e -> {
 			new CrearCarta(SistemaImpl);
+			new CrearCarta(sistem);
 		});
 
 		return b;
@@ -81,6 +86,7 @@ public class GuiAdmin {
 		JButton b = new JButton("eliminar carta");
 		b.addActionListener(e -> {
 			new SeleccionarCarta();
+			new SeleccionarCarta(sistem);
 		});
 
 		return b;
