@@ -8,11 +8,11 @@ public class Energia extends Carta {
 		this.Elemento = Elemento;
 	}
 
-	public String getBonificacion() {
+	public String getElemento() {
 		return Elemento;
 	}
 
-	public void setBonificacion(String Elemento) {
+	public void setElemento(String Elemento) {
 		this.Elemento = Elemento;
 	}
 

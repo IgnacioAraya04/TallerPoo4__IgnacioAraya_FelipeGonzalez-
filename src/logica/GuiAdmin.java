@@ -71,7 +71,7 @@ public class GuiAdmin {
 	private JButton agregarCarta() {
 		JButton b = new JButton("agregar carta");
 		b.addActionListener(e -> {
-			new CrearCarta();
+			new CrearCarta(SistemaImpl);
 		});
 
 		return b;

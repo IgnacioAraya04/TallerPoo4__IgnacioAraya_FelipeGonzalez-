@@ -5,8 +5,22 @@ import java.util.ArrayList;
 import dominio.Carta;
 
 public class SistemaImpl implements Sistema {
+	private static SistemaImpl instancia;
+	/*
+	 * private CartaFactory cf;
+	 * private ArrayList<Carta> listaCartas;
+	 */
 	CartaFactory cf = new CartaFactory();
 	ArrayList<Carta> listaCartas = new ArrayList<Carta>();
+	
+	private SistemaImpl () {}
+	
+	public static SistemaImpl getInstancia() {
+		if(instancia == null) {
+			instancia = new SistemaImpl();
+		}
+		return instancia;
+	}
 	
 	@Override
 	public void AgregarCarta(String string) {
