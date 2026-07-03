@@ -48,7 +48,7 @@ public class Gui {
 	private JButton adminButton(JFrame v) {
 		JButton b = new JButton("Menú Admin");
 		
-		b.addActionListener( ->{
+		b.addActionListener( e ->{
 			GuiAdmin a = new GuiAdmin();
 			a.createGuiAdmin();
 
