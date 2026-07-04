@@ -82,7 +82,7 @@ public class GuiAdmin {
 	private JButton eliminarCarta() {
 		JButton b = new JButton("eliminar carta");
 		b.addActionListener(e -> {
-			new SeleccionarCarta(sistem);
+			new SeleccionarCarta(sistem,"Eliminar");
 		});
 
 		return b;
@@ -91,7 +91,7 @@ public class GuiAdmin {
 	private JButton modificarCarta() {
 		JButton b = new JButton("modificar carta");
 		b.addActionListener(e -> {
-
+			new SeleccionarCarta(sistem, "Modificar");
 		});
 
 		return b;

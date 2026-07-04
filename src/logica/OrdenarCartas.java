@@ -25,6 +25,7 @@ public class OrdenarCartas extends JFrame{
  	private JScrollPane scrollPaneRareza, scrollPaneNombre, scrollPanePoder;
  	private CardLayout cardLayout = new CardLayout();
  	private JPanel cardsPanel = new JPanel(cardLayout);
+ 	private CalculadorPoder calc = new CalculadorPoder();
  	
  	public OrdenarCartas(SistemaImpl sistem) {
  		this.sistem = sistem ;
@@ -35,7 +36,7 @@ public class OrdenarCartas extends JFrame{
  	
  	private void configurarVentana() {
 		setTitle("Ordenar Cartas");
-		setSize(400,500);
+		setSize(500,500);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setLayout(new BorderLayout());
@@ -52,33 +53,43 @@ public class OrdenarCartas extends JFrame{
 		panelFormulario.add(comboTipodeOrdenBox);
 		add(panelFormulario,BorderLayout.NORTH);
  		
- 		gridPanel1 = new JPanel(new GridLayout(20,1,5,5));
- 		//System ordenar por rareza antes de este de aca !!!
- 		for (int i = 0; i < 20; i++) {
-			JPanel contenedor = new JPanel(new BorderLayout());
-			JLabel imagen = imagen("rndomImages/backCard.jpg");
-			JLabel texto = new JLabel("Rareza");
+ 		gridPanel1 = new JPanel(new GridLayout(listaCarta.size(),1,5,5));
+ 		for (int i = 0; i < listaCarta.size(); i++) {
+ 			Carta carta = listaCarta.get(i);
+ 			JPanel contenedor = new JPanel(new BorderLayout());
+			JLabel imagen = imagen("Cartas/"+carta.getNombre()+".jpg");
+			if (imagen ==null) {
+				imagen = imagen("rndomImages/backCard.jpg");
+			}
+			JLabel texto = new JLabel(carta.getNombre()+"| Rareza: "+carta.getRareza()+"| Tipo de Carta: "+carta.getTipo()+"| Poder: "+carta.accept(calc));
 			contenedor.add(imagen,BorderLayout.WEST);
 			contenedor.add(texto,BorderLayout.CENTER);
 			gridPanel1.add(contenedor);
  		}
- 		
- 		gridPanel2 = new JPanel(new GridLayout(50,1,5,5));
+ 		sistem.ordenPorName();
+ 		gridPanel2 = new JPanel(new GridLayout(listaCarta.size(),1,5,5));
 			for (int i = 0; i < listaCarta.size(); i++) {
 				Carta carta = listaCarta.get(i);
 				JPanel contenedor = new JPanel(new BorderLayout());
-				JLabel imagen = imagen("rndomImages/backCard.jpg");
-				JLabel texto = new JLabel("nombre");
+				JLabel imagen = imagen("Cartas/"+carta.getNombre()+".jpg");
+				if (imagen ==null) {
+					imagen = imagen("rndomImages/backCard.jpg");
+				}
+				JLabel texto = new JLabel(carta.getNombre()+"| Rareza: "+carta.getRareza()+"| Tipo de Carta: "+carta.getTipo()+"| Poder: "+carta.accept(calc));
 				contenedor.add(imagen,BorderLayout.WEST);
 				contenedor.add(texto,BorderLayout.CENTER);
 				gridPanel2.add(contenedor);
 			}
-		
-		gridPanel3 = new JPanel(new GridLayout(50,1,5,5));
-			for (int i = 0; i < 20; i++) {
+		sistem.ordenPorPoder();
+		gridPanel3 = new JPanel(new GridLayout(listaCarta.size(),1,5,5));
+			for (int i = 0; i < listaCarta.size(); i++) {
+				Carta carta = listaCarta.get(i);
 				JPanel contenedor = new JPanel(new BorderLayout());
-				JLabel imagen = imagen("rndomImages/backCard.jpg");
-				JLabel texto = new JLabel("Poder");
+				JLabel imagen = imagen("Cartas/"+carta.getNombre()+".jpg");
+				if (imagen == null) {
+					imagen = imagen("rndomImages/backCard.jpg");
+				}
+				JLabel texto = new JLabel(carta.getNombre()+"| Rareza: "+carta.getRareza()+"| Tipo de Carta: "+carta.getTipo()+"| Poder: "+carta.accept(calc));
 				contenedor.add(imagen,BorderLayout.WEST);
 				contenedor.add(texto,BorderLayout.CENTER);
 				gridPanel3.add(contenedor);

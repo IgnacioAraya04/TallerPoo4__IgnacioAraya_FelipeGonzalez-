@@ -22,10 +22,7 @@ public class CrearCarta extends JFrame {
 	private JLabel lblInput1, lblInput2, lblInput3, lblInput4;
 	private JTextField txtInput1, txtInput2, txtInput3, txtInput4;
 	private SistemaImpl sistem;
-	
-	private boolean saveClicked = false;
-	
-	
+		
 	public CrearCarta(SistemaImpl sistem) {
 		this.sistem = sistem;
 		configurarVentana();

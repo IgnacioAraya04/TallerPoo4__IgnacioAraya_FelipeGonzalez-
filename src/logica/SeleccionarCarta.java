@@ -4,12 +4,15 @@ import java.awt.BorderLayout;
 
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -19,9 +22,12 @@ import dominio.Carta;
 public class SeleccionarCarta extends JFrame {
 	SistemaImpl sistem;
 	ArrayList<Carta> listaCartas;
-	public SeleccionarCarta(SistemaImpl sistem) {
+	private String tipoSelection;
+	private CalculadorPoder  calc = new CalculadorPoder();
+	public SeleccionarCarta(SistemaImpl sistem,String tipo) {
 		this.sistem = sistem;
 		listaCartas = sistem.getCarta();
+		tipoSelection =tipo;
 		configurarVentana();
 		iniciar();
 	}
@@ -45,8 +51,8 @@ public class SeleccionarCarta extends JFrame {
 			Carta carta = listaCartas.get(i);
 			JPanel contenedor = new JPanel(new BorderLayout());
 			JLabel imagen = imagen("Cartas/"+carta.getNombre()+".jpg");
-			JLabel texto = new JLabel(carta.getNombre()+" Rareza: "+carta.getRareza()+" Tipo de Carta: "+carta.getTipo());
-			JButton boton = crearBoton(i);
+			JLabel texto = new JLabel(carta.getNombre()+"| Rareza: "+carta.getRareza()+"| Tipo de Carta: "+carta.getTipo()+"| Poder: "+carta.accept(calc));
+			JButton boton = crearBoton(carta);
 			contenedor.add(imagen,BorderLayout.WEST);
 			contenedor.add(texto,BorderLayout.CENTER);
 			contenedor.add(boton,BorderLayout.EAST);
@@ -74,17 +80,17 @@ public class SeleccionarCarta extends JFrame {
 		return label;
 	}
 	
-	private JButton crearBoton(Integer i) {
-		JButton b = new JButton("Seleccionar") {
-			Integer indice = i;
-			
-		};
-		b.addActionListener(e -> {
-			
-			
-			
+	private JButton crearBoton(Carta carta) {
+		JButton b = new JButton("Seleccionar");
+		b.addActionListener(e->{
+			if (tipoSelection.equalsIgnoreCase("Eliminar")) {
+				sistem.listaCartas.remove(carta);
+				JOptionPane.showMessageDialog(this, "Carta Eliminada, Recarge la pagina para verlo reflejado.");
+			}
+			else if (tipoSelection.equalsIgnoreCase("Modificar")) {
+			 new ModificarCarta(carta.getTipo(),carta);
+			}
 		});
-		
 		return b;
 	}
 	

@@ -1,4 +1,7 @@
 package logica;
+//Integrante 1: Ignacio Araya Munizaga - 21.824.045-3 - ITI
+//Integrante 2: Felipe Gonzáles Zuleta - 21.776.516-1 - ITI
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,6 +18,7 @@ public class Main {
 				String string = (String) scan.nextLine();
 				sistem.AgregarCarta(string);
 			}
+			sistem.ordenPorRareza();
 			scan.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("Archivo no encontrado");

@@ -35,6 +35,16 @@ public abstract class Carta {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	public void setDaño(int d) {
+	}
+	public void setCantidadEnergia(int c) {
+	}
+	public void setBonificacion(int b) {
+	}
+	public void setEfectorPorTurno(int efectorPorTurno) {
+	}
+	public void setElemento(String Elemento) {
+	}
 	
 	public abstract double accept(PoderVisitor visitor);
 

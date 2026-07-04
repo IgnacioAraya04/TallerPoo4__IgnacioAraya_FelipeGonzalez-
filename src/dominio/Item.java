@@ -13,7 +13,7 @@ public class Item extends Carta {
 	public int getBonificacion() {
 		return bonificacion;
 	}
-
+	@Override
 	public void setBonificacion(int bonificacion) {
 		this.bonificacion = bonificacion;
 	}
