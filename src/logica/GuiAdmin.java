@@ -16,11 +16,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/**
+ * Clase que se encarga de instanciar una ventana encargada de permitir al usuario elegir que accion desea hacer como admin
+ */
 public class GuiAdmin {
 	SistemaImpl sistem;
     private JComboBox<String> comboTipoTransporte;
 	
 	
+	/**
+	 * Crea la ventana junto a sus configuraciones
+	 * @param sistem 
+	 */
 	public void createGuiAdmin(SistemaImpl sistem) {
 		this.sistem = sistem;
 		
@@ -30,14 +37,16 @@ public class GuiAdmin {
 		ventana.setSize(220, 290);
 		ventana.setLocationRelativeTo(null);
 		
-		ventana.setContentPane(new ImageBackgroundPanel("rndomImages/backgroundAdmin.png"));
-		
 		ventana.add(createGui());
 
 		ventana.setVisible(true);
 
 	}
 
+	/**
+	 * Metodo que instancia los componentes de la ventana admin
+	 * @return el panel principal donde se encuentran los componentes
+	 */
 	private JPanel createGui() {
 		JPanel mainPanel = new JPanel(new BorderLayout());
 
@@ -70,6 +79,10 @@ public class GuiAdmin {
 	
 	}
 
+	/**
+	 * Boton que instancia una ventana en donde el usuario puede crear una carta nueva para la coelccion
+	 * @return la instancia del boton creado
+	 */
 	private JButton agregarCarta() {
 		JButton b = new JButton("agregar carta");
 		b.addActionListener(e -> {
@@ -79,6 +92,10 @@ public class GuiAdmin {
 		return b;
 	}
 
+	/**
+	 * Boton que instancia una ventana en donde el usuario puede eliminar una carta de la coelccion
+	 * @return la instancia del boton creado
+	 */
 	private JButton eliminarCarta() {
 		JButton b = new JButton("eliminar carta");
 		b.addActionListener(e -> {
@@ -88,6 +105,10 @@ public class GuiAdmin {
 		return b;
 	}
 
+	/**
+	 * Boton que instancia una ventana en donde el usuario puede modificar una carta de la coelccion
+	 * @return la instancia del boton creado
+	 */
 	private JButton modificarCarta() {
 		JButton b = new JButton("modificar carta");
 		b.addActionListener(e -> {

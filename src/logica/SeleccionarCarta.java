@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -15,15 +16,28 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import dominio.Carta;
 
+/**
+ * Clase que se encarga de instanciar una ventana que selecciona una carta de la coleccion para eliminar o modificar
+ * dependiendo de la seleccion en el menu de administrador
+ */
 public class SeleccionarCarta extends JFrame {
 	SistemaImpl sistem;
 	ArrayList<Carta> listaCartas;
 	private String tipoSelection;
 	private CalculadorPoder  calc = new CalculadorPoder();
+	
+	/**
+	 * Constructor de la clase
+	 * 
+	 * @param sistem Sistema en donde se encuentra la coleccion de cartas
+	 * @param tipo Si se busca eliminar o modificar una carta
+	 * 
+	 */
 	public SeleccionarCarta(SistemaImpl sistem,String tipo) {
 		this.sistem = sistem;
 		listaCartas = sistem.getCarta();
@@ -32,6 +46,9 @@ public class SeleccionarCarta extends JFrame {
 		iniciar();
 	}
 	
+	/**
+	 * Configuracion de la ventana
+	 */
 	private void configurarVentana() {
 		setTitle("Seleccionar Carta");
 		setSize(600,500);
@@ -41,6 +58,9 @@ public class SeleccionarCarta extends JFrame {
 		setVisible(true);
 	}
 	
+	/**
+	 * Metodo que se encarga de iniciar los componentes de la ventana
+	 */
 	private void iniciar() {
 
 		
@@ -69,29 +89,58 @@ public class SeleccionarCarta extends JFrame {
 		
 	}
 	
+	/**
+ 	 * Metodo que se encarga de cargar y escalar la imagen de la carta
+ 	 * 
+ 	 * @param nombreCarta Nombre de la carta para poder buscarla en los archivos
+ 	 * @return la imagen escalada
+ 	 */
 	private JLabel  imagen(String nombreCarta) {
 		ImageIcon imagenOriginal = new ImageIcon(nombreCarta);
+		if (imagenOriginal.getIconWidth() == -1) {
+			ImageIcon imagenDefault = new ImageIcon("rndomImages/backCard.jpg");
+			Image imagen = imagenDefault.getImage();
+			Image escalado = imagen.getScaledInstance(50, 70, 0);
+			ImageIcon imagenFinal = new ImageIcon(escalado);
+			
+			
+			JLabel label = new JLabel(imagenFinal);
+			
+			return label;
+		}
+		
 		Image imagen = imagenOriginal.getImage();
 		Image escalado = imagen.getScaledInstance(50, 70, 0);
 		ImageIcon imagenFinal = new ImageIcon(escalado);
+		
 		
 		JLabel label = new JLabel(imagenFinal);
 		
 		return label;
 	}
 	
+	/**
+	 * Metodo que instancia un boton que selecciona la carta deseada y envia al usuario a la ventana correspondiente 
+	 * a lo que desea hacer (Eliminar o Modificar una carta)
+	 * @param carta La carta seleccionada
+	 * @return la instancia del boton creado
+	 */
 	private JButton crearBoton(Carta carta) {
 		JButton b = new JButton("Seleccionar");
 		b.addActionListener(e->{
 			if (tipoSelection.equalsIgnoreCase("Eliminar")) {
 				sistem.listaCartas.remove(carta);
-				JOptionPane.showMessageDialog(this, "Carta Eliminada, Recarge la pagina para verlo reflejado.");
+				JOptionPane.showMessageDialog(this, "Carta Eliminada Con Exito");
+				dispose();
 			}
 			else if (tipoSelection.equalsIgnoreCase("Modificar")) {
-			 new ModificarCarta(carta.getTipo(),carta);
+			 new ModificarCarta(carta).showDialog();
+		
+			 
 			}
 		});
 		return b;
 	}
+	
 	
 }

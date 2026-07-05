@@ -9,6 +9,11 @@ import java.util.Scanner;
 
 public class Main {
 
+	/**
+	 * 
+	 * Clase main del progrma se encarga de leer el archivo de cartas y enviar los datos al sistema para su procesado
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Gui g = new Gui();
 		SistemaImpl sistem = SistemaImpl.getInstancia();

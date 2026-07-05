@@ -17,6 +17,10 @@ import javax.swing.JScrollPane;
 
 import dominio.Carta;
 
+/**
+ * Clase encargada de instanciar una ventana que contiene una lista de las cartas, se puede elejir como ordenar las
+ * cartas por orden de poder, rareza o nombre
+ */
 public class OrdenarCartas extends JFrame{
  	private JComboBox<String> comboTipodeOrdenBox;
  	private ArrayList<Carta> listaCarta;
@@ -27,6 +31,10 @@ public class OrdenarCartas extends JFrame{
  	private JPanel cardsPanel = new JPanel(cardLayout);
  	private CalculadorPoder calc = new CalculadorPoder();
  	
+ 	/**
+ 	 * Constructor de la clase 
+ 	 * @param sistem Instancia del sistema para obtener la coleccion de cartas para poder mostrarlas
+ 	 */
  	public OrdenarCartas(SistemaImpl sistem) {
  		this.sistem = sistem ;
  		listaCarta = sistem.getCarta();
@@ -34,6 +42,9 @@ public class OrdenarCartas extends JFrame{
  		iniciar();
  	}
  	
+ 	/**
+ 	 * Metodo para configurar la ventana
+ 	 */
  	private void configurarVentana() {
 		setTitle("Ordenar Cartas");
 		setSize(500,500);
@@ -42,6 +53,9 @@ public class OrdenarCartas extends JFrame{
 		setLayout(new BorderLayout());
 		setVisible(true);
 	}
+ 	/**
+ 	 * Metodo que se encarga de inicializar los componentes de la ventana
+ 	 */
  	private void iniciar() {
  		
  		JPanel panelFormulario = new JPanel(new GridLayout(1,2));
@@ -109,6 +123,10 @@ public class OrdenarCartas extends JFrame{
  		configurarEventos();
  		
  	}
+ 	/**
+ 	 * Metodo que se encarga de configurar los eventos de la ventana, dependiendo de la forma de ordenar,
+ 	 * mostrara una coleccion en distinto orden
+ 	 */
  	private void configurarEventos() {
  		comboTipodeOrdenBox.addItemListener(e ->{
  			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -129,8 +147,25 @@ public class OrdenarCartas extends JFrame{
  		});
 		
 	}
+ 	/**
+ 	 * Metodo que se encarga de cargar y escalar la imagen de la carta
+ 	 * 
+ 	 * @param nombreCarta Nombre de la carta para poder buscarla en los archivos
+ 	 * @return la imagen escalada
+ 	 */
  	private JLabel  imagen(String nombreCarta) {
 		ImageIcon imagenOriginal = new ImageIcon(nombreCarta);
+		if (imagenOriginal.getIconWidth() == -1) {
+			ImageIcon imagenDefault = new ImageIcon("rndomImages/backCard.jpg");
+			Image imagen = imagenDefault.getImage();
+			Image escalado = imagen.getScaledInstance(50, 70, 0);
+			ImageIcon imagenFinal = new ImageIcon(escalado);
+			
+			
+			JLabel label = new JLabel(imagenFinal);
+			
+			return label;
+		}
 		Image imagen = imagenOriginal.getImage();
 		Image escalado = imagen.getScaledInstance(50, 70, 0);
 		ImageIcon imagenFinal = new ImageIcon(escalado);

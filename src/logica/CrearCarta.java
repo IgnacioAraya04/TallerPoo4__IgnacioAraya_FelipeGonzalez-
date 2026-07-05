@@ -17,18 +17,30 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * Clase que crea una ventana Gui con un formulario para que el usuario puede ingresar los datos para la nueva carta
+ * las preguntas del formulario cambian dependiendo del tipo de carta que seleccione el usuario 
+ */
 public class CrearCarta extends JFrame {
+ 
  	private JComboBox<String> comboTipodeCartaBox;
 	private JLabel lblInput1, lblInput2, lblInput3, lblInput4;
 	private JTextField txtInput1, txtInput2, txtInput3, txtInput4;
 	private SistemaImpl sistem;
 		
+	/**
+	 * Constructor de la clase Crear Carta
+	 * @param sistem Clase de sistema que almacena las cartas
+	 */
 	public CrearCarta(SistemaImpl sistem) {
 		this.sistem = sistem;
 		configurarVentana();
 		iniciar();
 	}
 	
+	/**
+	 * Configuraciones de la ventana
+	 */
 	private void configurarVentana() {
 		setTitle("Crear Carta Nueva");
 		setSize(500,300);
@@ -38,6 +50,9 @@ public class CrearCarta extends JFrame {
 		setVisible(true);
 	}
 	
+	/**
+	 * Iniciador del formulario 
+	 */
 	private void iniciar() {
 		
 		JPanel panelFormulario = new JPanel(new GridLayout(6,2));
@@ -81,6 +96,11 @@ public class CrearCarta extends JFrame {
 		configurarEventos(btnCrear);
 	}
 	
+	/**
+	 * Configura el cambio de preguntas del formulario y que el boton pueda enviar la informacion ingresada al sistenaImpl
+	 * para instanciar la nueva carta
+	 * @param btnCrear boton del formulario que envia los datos para instanciar la nueva carta
+	 */
 	private void configurarEventos(JButton btnCrear) {
 		comboTipodeCartaBox.addItemListener(e ->{
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -164,11 +184,16 @@ public class CrearCarta extends JFrame {
 				JOptionPane.showMessageDialog(this, "Por Favor ingrese valores válidos en los campos correspondientes");
 		}
 		
-		
+		getOwner().dispose();
 		
 		});
 	}
 	
+	/**
+	 * Metodo encargado de cargar y seleccionar un gif que acompaña el formulario
+	 * 
+	 * @return Gif escalado para acomodar la ventana
+	 */
 	private JLabel imagenPrincipal() {
 		ImageIcon imagenOriginal = new ImageIcon("rndomImages/relax.gif");
 		Image imagen = imagenOriginal.getImage();
