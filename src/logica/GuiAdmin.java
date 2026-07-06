@@ -21,7 +21,6 @@ import javax.swing.SwingConstants;
  */
 public class GuiAdmin {
 	SistemaImpl sistem;
-    private JComboBox<String> comboTipoTransporte;
 	
 	
 	/**
